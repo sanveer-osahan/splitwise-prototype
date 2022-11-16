@@ -24,6 +24,10 @@ public class IDNameReference {
         return new IDNameReference(entity.getId(), entity.getMeta().getName());
     }
 
+    public static IDNameReference of(String id, String name) {
+        return new IDNameReference(id, name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -4,6 +4,9 @@ import com.prototype.splitwise.entity.Entity;
 import com.prototype.splitwise.entity.IDNameReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -11,16 +14,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Set;
 
+@CompoundIndexes({
+        @CompoundIndex(name = "split_users_index", def = "{ 'data.splits.user._id' : 1, 'data.owner._id' : 1, 'meta.audit.createdOn' : -1 }")
+})
+@Document(Expense.SERVICE)
 @Getter
 @Setter
-public class Expense extends Entity<Expense.Data> {
+public class Expense extends Entity<Expense.ExpenseData> {
 
     public static final String ENTITY_TYPE = "expense";
     public static final String SERVICE = ENTITY_TYPE + "s";
 
     @Getter
     @Setter
-    public static class Data {
+    public static class ExpenseData {
 
         @NotNull private SplitType splitType = SplitType.EQUAL;
 

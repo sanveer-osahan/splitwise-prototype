@@ -1,25 +1,48 @@
 package com.prototype.splitwise.expense;
 
-import com.prototype.splitwise.entity.EntityRepository;
+import com.prototype.splitwise.config.AuthContext;
 import com.prototype.splitwise.entity.EntityService;
 import com.prototype.splitwise.entity.IDNameReference;
+import com.prototype.splitwise.entity.PaginationRequest;
 import com.prototype.splitwise.event.Event;
 import com.prototype.splitwise.exception.ClientException;
+import com.prototype.splitwise.group.Group;
 import com.prototype.splitwise.user.User;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 final class ExpenseService extends EntityService<Expense> {
 
     private final EntityService<User> userService;
+    private final EntityService<Group> groupService;
+    private final ExpenseRepository expenseRepository;
 
     private ExpenseService(
-            EntityRepository<Expense> expenseRepository,
+            ExpenseRepository expenseRepository,
             EntityService<User> userService,
+            EntityService<Group> groupService,
             KafkaTemplate<String, Event<Expense>> kafkaTemplate) {
         super(expenseRepository, kafkaTemplate);
         this.userService = userService;
+        this.expenseRepository = expenseRepository;
+        this.groupService = groupService;
+    }
+
+    @Override
+    public Page<Expense> getPaginatedResponse(PaginationRequest paginationRequest) {
+        return expenseRepository.findByUserIdAndCreatedBetween(
+                AuthContext.getCurrentUserOrElseThrow(),
+                paginationRequest.getFromTime(),
+                paginationRequest.getToTime(),
+                paginationRequest.getPageable());
     }
 
     @Override
@@ -38,19 +61,29 @@ final class ExpenseService extends EntityService<Expense> {
         splitExpenses(newResource);
     }
 
+    @Override
+    protected void beforeDelete(Expense resource) {
+        super.beforeDelete(resource);
+        if (resource.getData().isFullSettled() || resource.getData().isPartialSettled()) {
+            throw new ClientException("Cannot delete when at least one user has settled the amount.");
+        }
+    }
+
     private void splitExpenses(Expense expense) {
-        // Validate owner
-        userService.getEntity(expense.getData().getOwner().getId());
+        var expenseData = expense.getData();
 
-        // Validate split users
-        expense.getData().getSplits()
-                .stream()
+        // Validate Group
+        var group = groupService.getEntity(expenseData.getGroup().getId());
+        expenseData.getGroup().setName(group.getMeta().getName());
+
+        validateExpenseOwner(expense, group);
+
+        expenseData.getSplits().stream()
                 .map(Split::getUser)
-                .map(IDNameReference::getId)
-                .forEach(userService::getEntity);
+                .forEach(userRef -> validateSplitUser(userRef, group));
 
-        expense.getData().setFullSettled(false);
-        expense.getData().setPartialSettled(false);
+        expenseData.setFullSettled(false);
+        expenseData.setPartialSettled(false);
 
         switch (expense.getData().getSplitType()) {
             case EQUAL:
@@ -62,6 +95,26 @@ final class ExpenseService extends EntityService<Expense> {
         }
     }
 
+    private void validateExpenseOwner(Expense expense, Group group) {
+        var expenseData = expense.getData();
+        var ownerRef = expenseData.getOwner();
+        if (Objects.isNull(ownerRef) || StringUtils.isBlank(ownerRef.getId())) {
+            expenseData.setOwner(IDNameReference.of(AuthContext.getCurrentUserOrElseThrow(), null));
+        }
+        var owner = userService.getEntity(expenseData.getOwner().getId());
+        expenseData.getOwner().setName(owner.getMeta().getName());
+    }
+
+    // Validate split users exist and whether they are part of the group
+    private void validateSplitUser(IDNameReference userRef, Group group) {
+        var user = userService.getEntity(userRef.getId());
+        if (!group.getData().getUsers().contains(userRef)) {
+            throw new ClientException(
+                    user.getId() + " doesn't belong to the group " + group.getId());
+        }
+        userRef.setName(user.getMeta().getName());
+    }
+
     /**
      * The total amount should not be less than the total split amount. <br>
      * Include the owner in the split if there's a difference in both the amounts, assuming it to be owner's
@@ -70,20 +123,36 @@ final class ExpenseService extends EntityService<Expense> {
      */
     private void exactSplit(Expense expense) {
         var expenseData = expense.getData();
-        double totalSplitAmount = expenseData.getSplits().stream()
-                .map(Split::getAmount)
-                .reduce(0D, Double::sum);
-        var splitUsersStream = expenseData.getSplits().stream().map(Split::getUser);
-        double difference = expenseData.getTotalAmount() - totalSplitAmount;
-        if (difference > 0) {
-            throw new ClientException("The total amount entered cannot be less than the split amounts");
+        var splitUsers = expenseData.getSplits().stream()
+                .collect(Collectors.toMap(Split::getUser, Function.identity()));
+        var owner = expenseData.getOwner();
+        if (splitUsers.containsKey(owner)) {
+            expenseData.getSplits().remove(splitUsers.get(owner));
         }
-        if (difference == 0
-                && splitUsersStream.noneMatch(user -> user.equals(expenseData.getOwner()))) {
+
+        double totalSplitAmount = expenseData.getSplits().stream()
+                .map(split -> {
+                    validateSplitAmount(split);
+                    return split.getAmount();
+                })
+                .reduce(0D, Double::sum);
+
+        double difference = expenseData.getTotalAmount() - totalSplitAmount;
+
+        if (difference < 0) {
+            throw new ClientException("The total amount entered cannot be less than the split amounts total");
+        }
+        if (difference == 0) {
             expenseData.setOwnerIncluded(false);
         } else {
+            expenseData.getSplits().add(Split.as(owner, difference));
             expenseData.setOwnerIncluded(true);
-            expenseData.getSplits().add(Split.as(expenseData.getOwner(), difference));
+        }
+    }
+
+    private void validateSplitAmount(Split split) {
+        if (Objects.isNull(split.getAmount()) || split.getAmount() <= 0) {
+            throw new ClientException("Invalid or no split amount entered for user : " + split.getUser().getId());
         }
     }
 

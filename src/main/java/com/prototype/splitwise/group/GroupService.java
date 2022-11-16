@@ -40,21 +40,25 @@ final class GroupService extends EntityService<Group> {
     }
 
     /**
-     * Make the current user who created the group also a member
+     * Validate the users in the group and also make the current user who created the group a member
      * @param resource Group to be created
      */
     @Override
     protected void beforeCreate(Group resource) {
         super.beforeCreate(resource);
-        var currentUser = userService.getEntity(AuthContext.getCurrentUserOrElseThrow());
-        var currentUserReference = IDNameReference.of(currentUser.getId(), currentUser.getMeta().getName());
         var groupUsers = resource.getData().getUsers();
+        groupUsers.forEach(userRef -> {
+                    var user = userService.getEntity(userRef.getId());
+                    userRef.setName(user.getMeta().getName());
+                });
+        var currentUser = userService.getEntity(AuthContext.getCurrentUserOrElseThrow());
+        var currentUserReference = IDNameReference.of(currentUser);
         groupUsers.add(currentUserReference);
     }
 
     /**
      * The user who does not belong to an existing group cannot modify it. <br>
-     * Make the current user who's modifying the group also a member if not present in the new resource
+     * Validate the users and also make the current user who's modifying the group a member if not present in the new resource
      * @param oldResource old group before modification
      * @param newResource modified group
      */
@@ -62,12 +66,16 @@ final class GroupService extends EntityService<Group> {
     protected void beforeUpdate(Group oldResource, Group newResource) {
         super.beforeUpdate(oldResource, newResource);
         var currentUser = userService.getEntity(AuthContext.getCurrentUserOrElseThrow());
-        var currentUserReference = IDNameReference.of(currentUser.getId(), currentUser.getMeta().getName());
+        var currentUserReference = IDNameReference.of(currentUser);
         var oldUsers = oldResource.getData().getUsers();
         if (!oldUsers.contains(currentUserReference)) {
             throw new ClientException(HttpStatus.FORBIDDEN, String.format("The user %s doesn't have access to update group %s", currentUser.getId(), oldResource.getId()));
         }
         var updatedUsers = newResource.getData().getUsers();
+        updatedUsers.forEach(userRef -> {
+            var user = userService.getEntity(userRef.getId());
+            userRef.setName(user.getMeta().getName());
+        });
         updatedUsers.add(currentUserReference);
     }
 

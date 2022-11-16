@@ -9,7 +9,7 @@ import java.time.Instant;
 
 public interface EntityRepository<E extends Entity> extends MongoRepository<E, String> {
 
-    @Query(value = "{'meta.audit.createdOn':{ $gte: ?0, $lte: ?1}}")
+    @Query(value = "{ 'meta.audit.createdOn' : { $gte : ?0, $lt : ?1 } }")
     Page<E> findByCreatedBetween(Instant fromTime, Instant toTime, Pageable pageable);
 
 }

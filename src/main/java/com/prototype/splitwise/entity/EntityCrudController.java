@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.Instant;
 
-public abstract class EntityController<E extends Entity> {
+public abstract class EntityCrudController<E extends Entity> {
 
     private final EntityService<E> entityService;
 
-    protected EntityController(EntityService<E> entityService) {
+    protected EntityCrudController(EntityService<E> entityService) {
         this.entityService = entityService;
     }
 

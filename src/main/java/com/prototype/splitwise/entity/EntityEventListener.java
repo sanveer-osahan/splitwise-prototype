@@ -1,9 +1,9 @@
 package com.prototype.splitwise.entity;
 
 import com.prototype.splitwise.event.Event;
-import com.prototype.splitwise.event.EventHandler;
+import com.prototype.splitwise.event.EventListener;
 
-public abstract class EntityEventHandler<E extends Entity> extends EventHandler<Event<E>> {
+public abstract class EntityEventListener<E extends Entity> extends EventListener<Event<E>> {
     @Override
     public void consume(Event<E> event) {
         switch (event.getAction()) {

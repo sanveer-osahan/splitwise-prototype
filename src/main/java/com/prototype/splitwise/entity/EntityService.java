@@ -49,6 +49,11 @@ public abstract class EntityService<E extends Entity> {
 
     public void deleteEntity(String id) {
         var resource = getEntity(id);
+        beforeDelete(resource);
+        deleteEntity(resource);
+    }
+
+    public void deleteEntity(E resource) {
         entityRepository.delete(resource);
         publish(resource, Action.DELETE);
     }
@@ -72,6 +77,9 @@ public abstract class EntityService<E extends Entity> {
         var oldAudit = oldResource.getMeta().getAudit();
         newResource.getMeta().setAudit(oldAudit);
         newResource.modifyAudit(AuthContext.getCurrentUserOrElse("admin"));
+    }
+
+    protected void beforeDelete(E resource) {
     }
 
     protected abstract String getEntityType();

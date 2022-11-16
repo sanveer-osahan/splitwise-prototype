@@ -29,4 +29,9 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
 
         return MongoClients.create(mongoClientSettings);
     }
+
+    @Override
+    public boolean autoIndexCreation() {
+        return true;
+    }
 }
