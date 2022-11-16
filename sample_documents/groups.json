@@ -1,0 +1,109 @@
+[{
+  "_id": "work",
+  "meta": {
+    "name": "Work",
+    "audit": {
+      "createdBy": "alice",
+      "lastModifiedBy": "alice",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668598029265"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668598029265"
+        }
+      }
+    }
+  },
+  "data": {
+    "users": [
+      {
+        "_id": "bob",
+        "name": "Bob"
+      },
+      {
+        "_id": "alice",
+        "name": "Alice"
+      },
+      {
+        "_id": "charlie",
+        "name": "Charlie"
+      }
+    ]
+  },
+  "_class": "com.prototype.splitwise.group.Group"
+},{
+  "_id": "vacation",
+  "meta": {
+    "name": "Vacation",
+    "audit": {
+      "createdBy": "bob",
+      "lastModifiedBy": "bob",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668598083055"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668598083055"
+        }
+      }
+    }
+  },
+  "data": {
+    "users": [
+      {
+        "_id": "dave",
+        "name": "Dave"
+      },
+      {
+        "_id": "bob",
+        "name": "Bob"
+      },
+      {
+        "_id": "charlie",
+        "name": "Charlie"
+      }
+    ]
+  },
+  "_class": "com.prototype.splitwise.group.Group"
+},{
+  "_id": "party",
+  "meta": {
+    "name": "Party",
+    "audit": {
+      "createdBy": "charlie",
+      "lastModifiedBy": "charlie",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668598141519"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668598141519"
+        }
+      }
+    }
+  },
+  "data": {
+    "users": [
+      {
+        "_id": "emma",
+        "name": "Emma"
+      },
+      {
+        "_id": "dave",
+        "name": "Dave"
+      },
+      {
+        "_id": "charlie",
+        "name": "Charlie"
+      }
+    ]
+  },
+  "_class": "com.prototype.splitwise.group.Group"
+}]

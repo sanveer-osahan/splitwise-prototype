@@ -1,0 +1,121 @@
+[{
+  "_id": "alice",
+  "meta": {
+    "name": "Alice",
+    "audit": {
+      "createdBy": "admin",
+      "lastModifiedBy": "admin",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668597546870"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668597546870"
+        }
+      }
+    }
+  },
+  "data": {
+    "email": "alice@gmail.com",
+    "phone": "123"
+  },
+  "_class": "com.prototype.splitwise.user.User"
+},{
+  "_id": "bob",
+  "meta": {
+    "name": "Bob",
+    "audit": {
+      "createdBy": "admin",
+      "lastModifiedBy": "admin",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668597565252"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668597565252"
+        }
+      }
+    }
+  },
+  "data": {
+    "email": "bob@gmail.com",
+    "phone": "234"
+  },
+  "_class": "com.prototype.splitwise.user.User"
+},{
+  "_id": "charlie",
+  "meta": {
+    "name": "Charlie",
+    "audit": {
+      "createdBy": "admin",
+      "lastModifiedBy": "admin",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668597596424"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668597596424"
+        }
+      }
+    }
+  },
+  "data": {
+    "email": "charlie@gmail.com",
+    "phone": "345"
+  },
+  "_class": "com.prototype.splitwise.user.User"
+},{
+  "_id": "dave",
+  "meta": {
+    "name": "Dave",
+    "audit": {
+      "createdBy": "admin",
+      "lastModifiedBy": "admin",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668597663085"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668597663085"
+        }
+      }
+    }
+  },
+  "data": {
+    "email": "dave@gmail.com",
+    "phone": "456"
+  },
+  "_class": "com.prototype.splitwise.user.User"
+},{
+  "_id": "emma",
+  "meta": {
+    "name": "Emma",
+    "audit": {
+      "createdBy": "admin",
+      "lastModifiedBy": "admin",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668597685903"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668597685903"
+        }
+      }
+    }
+  },
+  "data": {
+    "email": "emma@gmail.com",
+    "phone": "567"
+  },
+  "_class": "com.prototype.splitwise.user.User"
+}]

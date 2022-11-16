@@ -37,15 +37,12 @@ public class Expense extends Entity<Expense.ExpenseData> {
         @Valid private IDNameReference owner;
 
         // Determines if the owner's contribution should be counted in the split
-        private boolean isOwnerIncluded = true;
+        private Boolean excludeOwner;
 
         @Valid @NotEmpty private Set<Split> splits;
 
         @NotNull @Valid private IDNameReference group;
 
-        // Determines if at least one of the users have settled their amount
-        private boolean isPartialSettled;
-
-        private boolean isFullSettled;
+        private State settlement = State.PENDING;
     }
 }

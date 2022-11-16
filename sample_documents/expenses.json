@@ -1,0 +1,308 @@
+[{
+  "_id": "lunch#work",
+  "meta": {
+    "name": "Lunch @ Work",
+    "audit": {
+      "createdBy": "alice",
+      "lastModifiedBy": "alice",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668598894579"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668598894579"
+        }
+      }
+    }
+  },
+  "data": {
+    "splitType": "EXACT",
+    "totalAmount": 1000,
+    "owner": {
+      "_id": "alice",
+      "name": "Alice"
+    },
+    "splits": [
+      {
+        "user": {
+          "_id": "bob",
+          "name": "Bob"
+        },
+        "amount": 300
+      },
+      {
+        "user": {
+          "_id": "alice",
+          "name": "Alice"
+        },
+        "amount": 700
+      }
+    ],
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    }
+  },
+  "_class": "com.prototype.splitwise.expense.Expense"
+},{
+  "_id": "snacks#work",
+  "meta": {
+    "name": "Snacks @ Work",
+    "audit": {
+      "createdBy": "bob",
+      "lastModifiedBy": "bob",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668600653368"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668600653368"
+        }
+      }
+    }
+  },
+  "data": {
+    "splitType": "EXACT",
+    "totalAmount": 400,
+    "owner": {
+      "_id": "bob",
+      "name": "Bob"
+    },
+    "splits": [
+      {
+        "user": {
+          "_id": "bob",
+          "name": "Bob"
+        },
+        "amount": 250
+      },
+      {
+        "user": {
+          "_id": "alice",
+          "name": "Alice"
+        },
+        "amount": 50
+      },
+      {
+        "user": {
+          "_id": "charlie",
+          "name": "Charlie"
+        },
+        "amount": 100
+      }
+    ],
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    }
+  },
+  "_class": "com.prototype.splitwise.expense.Expense"
+},{
+  "_id": "birthday#work",
+  "meta": {
+    "name": "Alice's Bday",
+    "audit": {
+      "createdBy": "charlie",
+      "lastModifiedBy": "charlie",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668610352407"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668610352407"
+        }
+      }
+    }
+  },
+  "data": {
+    "splitType": "EQUAL",
+    "totalAmount": 500,
+    "owner": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "splits": [
+      {
+        "user": {
+          "_id": "bob",
+          "name": "Bob"
+        },
+        "amount": 250
+      },
+      {
+        "user": {
+          "_id": "charlie",
+          "name": "Charlie"
+        },
+        "amount": 250
+      }
+    ],
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    },
+    "settlement": "PENDING"
+  },
+  "_class": "com.prototype.splitwise.expense.Expense"
+},{
+  "_id": "drinks#vacation",
+  "meta": {
+    "name": "Got the drinks",
+    "audit": {
+      "createdBy": "charlie",
+      "lastModifiedBy": "charlie",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668611770341"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668611770341"
+        }
+      }
+    }
+  },
+  "data": {
+    "splitType": "EQUAL",
+    "totalAmount": 10000,
+    "owner": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "splits": [
+      {
+        "user": {
+          "_id": "bob",
+          "name": "Bob"
+        },
+        "amount": 3333.3333333333335
+      },
+      {
+        "user": {
+          "_id": "dave",
+          "name": "Dave"
+        },
+        "amount": 3333.3333333333335
+      },
+      {
+        "user": {
+          "_id": "charlie",
+          "name": "Charlie"
+        },
+        "amount": 3333.3333333333335
+      }
+    ],
+    "group": {
+      "_id": "vacation",
+      "name": "Vacation"
+    },
+    "settlement": "PENDING"
+  },
+  "_class": "com.prototype.splitwise.expense.Expense"
+},{
+  "_id": "flight#vacation",
+  "meta": {
+    "name": "Flight Tickets for Charlie",
+    "audit": {
+      "createdBy": "dave",
+      "lastModifiedBy": "dave",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668612882268"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668612882268"
+        }
+      }
+    }
+  },
+  "data": {
+    "splitType": "EQUAL",
+    "totalAmount": 5000,
+    "owner": {
+      "_id": "dave",
+      "name": "Dave"
+    },
+    "excludeOwner": true,
+    "splits": [
+      {
+        "user": {
+          "_id": "charlie",
+          "name": "Charlie"
+        },
+        "amount": 5000
+      }
+    ],
+    "group": {
+      "_id": "vacation",
+      "name": "Vacation"
+    },
+    "settlement": "PENDING"
+  },
+  "_class": "com.prototype.splitwise.expense.Expense"
+},{
+  "_id": "booking#party",
+  "meta": {
+    "name": "Party Venue Booking",
+    "audit": {
+      "createdBy": "emma",
+      "lastModifiedBy": "emma",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668613133317"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668613133317"
+        }
+      }
+    }
+  },
+  "data": {
+    "splitType": "EQUAL",
+    "totalAmount": 6000,
+    "owner": {
+      "_id": "emma",
+      "name": "Emma"
+    },
+    "splits": [
+      {
+        "user": {
+          "_id": "dave",
+          "name": "Dave"
+        },
+        "amount": 2000
+      },
+      {
+        "user": {
+          "_id": "emma",
+          "name": "Emma"
+        },
+        "amount": 2000
+      },
+      {
+        "user": {
+          "_id": "charlie",
+          "name": "Charlie"
+        },
+        "amount": 2000
+      }
+    ],
+    "group": {
+      "_id": "party",
+      "name": "Party"
+    },
+    "settlement": "PENDING"
+  },
+  "_class": "com.prototype.splitwise.expense.Expense"
+}]

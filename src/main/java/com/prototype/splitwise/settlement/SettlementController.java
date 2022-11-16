@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.Instant;
 
 @RestController
@@ -21,7 +22,7 @@ public class SettlementController {
 
     @GetMapping
     public ResponseEntity<Page<Settlement>> fetchPaginated(
-            @RequestHeader(value = AuthContext.USER_ID, required = false) String currentUser,
+            @RequestHeader(value = AuthContext.USER_ID) String currentUser,
             @RequestParam(value = "fromTime", required = false) Instant fromTime,
             @RequestParam(value = "toTime", required = false) Instant toTime,
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
@@ -36,6 +37,22 @@ public class SettlementController {
                 .build();
         var paginatedResponse = settlementService.getSettlements(paginationRequest);
         return ResponseEntity.ok(paginatedResponse);
+    }
+
+    @PostMapping("due")
+    public ResponseEntity<SettlementResponse> getDues(
+            @RequestHeader(value = AuthContext.USER_ID) String currentUser,
+            @Valid @RequestBody SettlementRequest request) {
+        var dues = settlementService.getDues(request);
+        return ResponseEntity.ok(dues);
+    }
+
+    @PostMapping("pay")
+    public ResponseEntity<SettlementResponse> settleDues(
+            @RequestHeader(value = AuthContext.USER_ID) String currentUser,
+            @Valid @RequestBody SettlementRequest request) {
+        var dues = settlementService.makePayments(request);
+        return ResponseEntity.ok(dues);
     }
 
 }

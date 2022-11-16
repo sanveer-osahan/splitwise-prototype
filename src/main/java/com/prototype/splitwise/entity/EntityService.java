@@ -25,7 +25,7 @@ public abstract class EntityService<E extends Entity> {
     public E createEntity(E resource) {
         if (Objects.nonNull(resource.getId()) && entityRepository.existsById(resource.getId())) {
             throw new ClientException(HttpStatus.CONFLICT,
-                    String.format("No %s found with id : %s", getEntityType(), resource.getId()));
+                    String.format("%s found with id : %s already exists", getEntityType(), resource.getId()));
         }
         beforeCreate(resource);
         var createdEntity = entityRepository.save(resource);

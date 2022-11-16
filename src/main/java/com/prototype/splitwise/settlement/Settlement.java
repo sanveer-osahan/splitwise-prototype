@@ -2,9 +2,7 @@ package com.prototype.splitwise.settlement;
 
 import com.prototype.splitwise.entity.Entity;
 import com.prototype.splitwise.entity.IDNameReference;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,6 +23,7 @@ public class Settlement extends Entity<Settlement.SettlementData> {
     @Getter
     @Setter
     @Builder
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static class SettlementData {
 
         private IDNameReference group;
@@ -33,5 +32,7 @@ public class Settlement extends Entity<Settlement.SettlementData> {
         private IDNameReference settler;
         private double totalAmount;
         private double pendingAmount;
+
+        private SettlementData() {}
     }
 }

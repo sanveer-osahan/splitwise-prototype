@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
         groupId = "expense_settlement_crud"
 )
 @Component
-public class ExpenseSettlementCrudListener extends EntityEventListener<Expense> {
+final class ExpenseSettlementCrudListener extends EntityEventListener<Expense> {
 
     private final SettlementService settlementService;
 

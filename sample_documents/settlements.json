@@ -1,0 +1,601 @@
+[{
+  "_id": "6374cc6f0410b6205f13e3e4",
+  "meta": {
+    "name": "Lunch @ Work",
+    "audit": {
+      "createdBy": "alice",
+      "lastModifiedBy": "alice",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668598894978"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668598894978"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    },
+    "expense": {
+      "_id": "lunch#work",
+      "name": "Lunch @ Work"
+    },
+    "owner": {
+      "_id": "alice",
+      "name": "Alice"
+    },
+    "settler": {
+      "_id": "alice",
+      "name": "Alice"
+    },
+    "totalAmount": 1000,
+    "pendingAmount": 300
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374cc6f0410b6205f13e3e5",
+  "meta": {
+    "name": "Lunch @ Work",
+    "audit": {
+      "createdBy": "alice",
+      "lastModifiedBy": "alice",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668598895049"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668598895049"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    },
+    "expense": {
+      "_id": "lunch#work",
+      "name": "Lunch @ Work"
+    },
+    "owner": {
+      "_id": "alice",
+      "name": "Alice"
+    },
+    "settler": {
+      "_id": "bob",
+      "name": "Bob"
+    },
+    "totalAmount": 1000,
+    "pendingAmount": -300
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374d34d7380525042d9a8fe",
+  "meta": {
+    "name": "Snacks @ Work",
+    "audit": {
+      "createdBy": "bob",
+      "lastModifiedBy": "bob",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668600653950"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668600653950"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    },
+    "expense": {
+      "_id": "snacks#work",
+      "name": "Snacks @ Work"
+    },
+    "owner": {
+      "_id": "bob",
+      "name": "Bob"
+    },
+    "settler": {
+      "_id": "bob",
+      "name": "Bob"
+    },
+    "totalAmount": 400,
+    "pendingAmount": 150
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374d34e7380525042d9a8ff",
+  "meta": {
+    "name": "Snacks @ Work",
+    "audit": {
+      "createdBy": "bob",
+      "lastModifiedBy": "bob",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668600654030"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668600654030"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    },
+    "expense": {
+      "_id": "snacks#work",
+      "name": "Snacks @ Work"
+    },
+    "owner": {
+      "_id": "bob",
+      "name": "Bob"
+    },
+    "settler": {
+      "_id": "alice",
+      "name": "Alice"
+    },
+    "totalAmount": 400,
+    "pendingAmount": -50
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374d34e7380525042d9a900",
+  "meta": {
+    "name": "Snacks @ Work",
+    "audit": {
+      "createdBy": "bob",
+      "lastModifiedBy": "bob",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668600654047"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668600654047"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    },
+    "expense": {
+      "_id": "snacks#work",
+      "name": "Snacks @ Work"
+    },
+    "owner": {
+      "_id": "bob",
+      "name": "Bob"
+    },
+    "settler": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "totalAmount": 400,
+    "pendingAmount": -100
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374f9300454ea72b19050d5",
+  "meta": {
+    "name": "Alice's Bday",
+    "audit": {
+      "createdBy": "charlie",
+      "lastModifiedBy": "charlie",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668610352950"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668610352950"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    },
+    "expense": {
+      "_id": "birthday#work",
+      "name": "Alice's Bday"
+    },
+    "owner": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "settler": {
+      "_id": "bob",
+      "name": "Bob"
+    },
+    "totalAmount": 500,
+    "pendingAmount": -250
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374f9310454ea72b19050d6",
+  "meta": {
+    "name": "Alice's Bday",
+    "audit": {
+      "createdBy": "charlie",
+      "lastModifiedBy": "charlie",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668610353003"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668610353003"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "work",
+      "name": "Work"
+    },
+    "expense": {
+      "_id": "birthday#work",
+      "name": "Alice's Bday"
+    },
+    "owner": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "settler": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "totalAmount": 500,
+    "pendingAmount": 250
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374feba0454ea72b19050d7",
+  "meta": {
+    "name": "Got the drinks",
+    "audit": {
+      "createdBy": "charlie",
+      "lastModifiedBy": "charlie",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668611770487"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668611770487"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "vacation",
+      "name": "Vacation"
+    },
+    "expense": {
+      "_id": "drinks#vacation",
+      "name": "Got the drinks"
+    },
+    "owner": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "settler": {
+      "_id": "bob",
+      "name": "Bob"
+    },
+    "totalAmount": 10000,
+    "pendingAmount": -3333.3333333333335
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374feba0454ea72b19050d8",
+  "meta": {
+    "name": "Got the drinks",
+    "audit": {
+      "createdBy": "charlie",
+      "lastModifiedBy": "charlie",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668611770503"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668611770503"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "vacation",
+      "name": "Vacation"
+    },
+    "expense": {
+      "_id": "drinks#vacation",
+      "name": "Got the drinks"
+    },
+    "owner": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "settler": {
+      "_id": "dave",
+      "name": "Dave"
+    },
+    "totalAmount": 10000,
+    "pendingAmount": -3333.3333333333335
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6374feba0454ea72b19050d9",
+  "meta": {
+    "name": "Got the drinks",
+    "audit": {
+      "createdBy": "charlie",
+      "lastModifiedBy": "charlie",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668611770507"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668611770507"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "vacation",
+      "name": "Vacation"
+    },
+    "expense": {
+      "_id": "drinks#vacation",
+      "name": "Got the drinks"
+    },
+    "owner": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "settler": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "totalAmount": 10000,
+    "pendingAmount": 6666.666666666666
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "637503122a641975ddc34f07",
+  "meta": {
+    "name": "Flight Tickets for Charlie",
+    "audit": {
+      "createdBy": "dave",
+      "lastModifiedBy": "dave",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668612882322"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668612882322"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "vacation",
+      "name": "Vacation"
+    },
+    "expense": {
+      "_id": "flight#vacation",
+      "name": "Flight Tickets for Charlie"
+    },
+    "owner": {
+      "_id": "dave",
+      "name": "Dave"
+    },
+    "settler": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "totalAmount": 5000,
+    "pendingAmount": -5000
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "637503122a641975ddc34f08",
+  "meta": {
+    "name": "Flight Tickets for Charlie",
+    "audit": {
+      "createdBy": "dave",
+      "lastModifiedBy": "dave",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668612882336"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668612882336"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "vacation",
+      "name": "Vacation"
+    },
+    "expense": {
+      "_id": "flight#vacation",
+      "name": "Flight Tickets for Charlie"
+    },
+    "owner": {
+      "_id": "dave",
+      "name": "Dave"
+    },
+    "settler": {
+      "_id": "dave",
+      "name": "Dave"
+    },
+    "totalAmount": 5000,
+    "pendingAmount": 5000
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6375040d2a641975ddc34f0c",
+  "meta": {
+    "name": "Party Venue Booking",
+    "audit": {
+      "createdBy": "emma",
+      "lastModifiedBy": "emma",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668613133387"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668613133387"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "party",
+      "name": "Party"
+    },
+    "expense": {
+      "_id": "booking#party",
+      "name": "Party Venue Booking"
+    },
+    "owner": {
+      "_id": "emma",
+      "name": "Emma"
+    },
+    "settler": {
+      "_id": "dave",
+      "name": "Dave"
+    },
+    "totalAmount": 6000,
+    "pendingAmount": -2000
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6375040d2a641975ddc34f0d",
+  "meta": {
+    "name": "Party Venue Booking",
+    "audit": {
+      "createdBy": "emma",
+      "lastModifiedBy": "emma",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668613133405"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668613133405"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "party",
+      "name": "Party"
+    },
+    "expense": {
+      "_id": "booking#party",
+      "name": "Party Venue Booking"
+    },
+    "owner": {
+      "_id": "emma",
+      "name": "Emma"
+    },
+    "settler": {
+      "_id": "emma",
+      "name": "Emma"
+    },
+    "totalAmount": 6000,
+    "pendingAmount": 4000
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+},{
+  "_id": "6375040d2a641975ddc34f0e",
+  "meta": {
+    "name": "Party Venue Booking",
+    "audit": {
+      "createdBy": "emma",
+      "lastModifiedBy": "emma",
+      "createdOn": {
+        "$date": {
+          "$numberLong": "1668613133422"
+        }
+      },
+      "lastModifiedOn": {
+        "$date": {
+          "$numberLong": "1668613133422"
+        }
+      }
+    }
+  },
+  "data": {
+    "group": {
+      "_id": "party",
+      "name": "Party"
+    },
+    "expense": {
+      "_id": "booking#party",
+      "name": "Party Venue Booking"
+    },
+    "owner": {
+      "_id": "emma",
+      "name": "Emma"
+    },
+    "settler": {
+      "_id": "charlie",
+      "name": "Charlie"
+    },
+    "totalAmount": 6000,
+    "pendingAmount": -2000
+  },
+  "_class": "com.prototype.splitwise.settlement.Settlement"
+}]

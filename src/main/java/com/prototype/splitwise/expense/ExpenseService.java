@@ -54,7 +54,7 @@ final class ExpenseService extends EntityService<Expense> {
     @Override
     protected void beforeUpdate(Expense oldResource, Expense newResource) {
         super.beforeUpdate(oldResource, newResource);
-        if (oldResource.getData().isFullSettled() || oldResource.getData().isPartialSettled()) {
+        if (!oldResource.getData().getSettlement().isPending()) {
             throw new ClientException("Cannot update when at least one user has settled the amount. " +
                     "Kindly create new expenses for the same");
         }
@@ -64,7 +64,7 @@ final class ExpenseService extends EntityService<Expense> {
     @Override
     protected void beforeDelete(Expense resource) {
         super.beforeDelete(resource);
-        if (resource.getData().isFullSettled() || resource.getData().isPartialSettled()) {
+        if (!resource.getData().getSettlement().isPending()) {
             throw new ClientException("Cannot delete when at least one user has settled the amount.");
         }
     }
@@ -82,8 +82,7 @@ final class ExpenseService extends EntityService<Expense> {
                 .map(Split::getUser)
                 .forEach(userRef -> validateSplitUser(userRef, group));
 
-        expenseData.setFullSettled(false);
-        expenseData.setPartialSettled(false);
+        expenseData.setSettlement(State.PENDING);
 
         switch (expense.getData().getSplitType()) {
             case EQUAL:
@@ -143,10 +142,10 @@ final class ExpenseService extends EntityService<Expense> {
             throw new ClientException("The total amount entered cannot be less than the split amounts total");
         }
         if (difference == 0) {
-            expenseData.setOwnerIncluded(false);
+            expenseData.setExcludeOwner(true);
         } else {
             expenseData.getSplits().add(Split.as(owner, difference));
-            expenseData.setOwnerIncluded(true);
+            expenseData.setExcludeOwner(false);
         }
     }
 
@@ -159,7 +158,7 @@ final class ExpenseService extends EntityService<Expense> {
     private void equalSplit(Expense expense) {
         var expenseData = expense.getData();
         var splits = expenseData.getSplits();
-        if (expenseData.isOwnerIncluded()) {
+        if (Objects.isNull(expenseData.getExcludeOwner()) || Boolean.FALSE.equals(expenseData.getExcludeOwner())) {
             splits.add(Split.as(expenseData.getOwner()));
         }
         double splitAmount = expenseData.getTotalAmount() / splits.size();

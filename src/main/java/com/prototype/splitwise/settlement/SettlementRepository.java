@@ -19,4 +19,8 @@ interface SettlementRepository extends EntityRepository<Settlement> {
 
     @Query(" { 'data.settler._id' : ?0 , 'meta.audit.createdOn' : { $gte : ?1, $lt : ?2 } }")
     Page<Settlement> findByUserIdAndCreatedBetween(String user, Instant fromTime, Instant toTime, Pageable pageable);
+
+    @Query(" { 'data.settler._id' : ?0 , 'data.owner._id' : ?1, 'data.group._id' : ?2, 'data.pendingAmount' : { $ne : 0 } }")
+    List<Settlement> findPendingSettlements(String settler, String owner, String group);
+
 }
